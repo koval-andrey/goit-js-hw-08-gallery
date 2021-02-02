@@ -1,11 +1,11 @@
 import { default as imagesCollection } from "./gallery-items.js";
 
 const ulRef = document.querySelector(".gallery");
-const itemRef = document.querySelector(".gallery__item");
+//const itemRef = document.querySelector(".gallery__item");
 const lightboxRef = document.querySelector(".lightbox");
 const lightboxOverlayRef = document.querySelector(".lightbox__overlay");
 const lightboxImageRef = document.querySelector(".lightbox__image");
-const modalContentRef = document.querySelector(".lightbox__content");
+//const modalContentRef = document.querySelector(".lightbox__content");
 const closeModalBtn = document.querySelector(
   'button[data-action="close-lightbox"]'
 );
@@ -17,7 +17,7 @@ const madeGalleryImages = imagesCollection.reduce((collection, img, i) => {
   <img class="gallery__image"
     src="${img.preview}" data-source="${img.original}"
     alt="${img.description}"
-    data-index="${i}"/>
+    data-index="${[i]}"/>
 </a>
 </li>`;
   return (collection += img);
@@ -29,7 +29,7 @@ ulRef.addEventListener("click", onGalleryClick);
 closeModalBtn.addEventListener("click", closeGalleryOnBtn);
 document.addEventListener("keydown", closeGalleryOnEsc);
 lightboxOverlayRef.addEventListener("click", closeGalleryOnLightbox);
-document.addEventListener("keydown", scrollImagesInModal);
+//document.addEventListener("keyup", scrollImagesInModal);
 
 function onGalleryClick(event) {
   event.preventDefault();
@@ -58,13 +58,13 @@ function closeGalleryOnLightbox(event) {
   document.removeEventListener("click", closeGalleryOnLightbox);
 }
 
-function scrollImagesInModal(event) {
-  imagesCollection.forEach((_original, i) => {
-    if (event.code === "ArrowRight") {
-      lightboxImageRef.src.dataset.index(i) += 1;
-    }
-    if (event.code === "ArrowLeft") {
-      lightboxImageRef.src.dataset.index(i) -= 1;
-    }
-  });
-}
+//function scrollImagesInModal(event) {
+//  let index = event.target.firstElementChild.dataset.index;
+//  if (lightboxRef.className.includes(!"is-open")) return;
+//  if (event.keyCode === 37 && imagesCollection.length - 1) {
+//    index += 1;
+//  }
+//  event.target.firstElementChild.dataset.index = index;
+//  lightboxImageRef.setAttribute("src", imagesCollection[index].original);
+//  lightboxImageRef.setAttribute("alt", imagesCollection[index].description);
+//}
