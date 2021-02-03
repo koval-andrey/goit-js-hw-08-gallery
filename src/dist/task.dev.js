@@ -1,43 +1,36 @@
-import { default as imagesCollection } from "./gallery-items.js";
+"use strict";
 
-const ulRef = document.querySelector(".gallery");
-//const itemRef = document.querySelector(".gallery__item");
-const lightboxRef = document.querySelector(".lightbox");
-const lightboxOverlayRef = document.querySelector(".lightbox__overlay");
-const lightboxImageRef = document.querySelector(".lightbox__image");
-//const modalContentRef = document.querySelector(".lightbox__content");
-const closeModalBtn = document.querySelector(
-  'button[data-action="close-lightbox"]'
-);
+var _galleryItems = _interopRequireDefault(require("./gallery-items.js"));
 
-const madeGalleryImages = imagesCollection.reduce((collection, img, i) => {
-  img = `
-<li class="gallery__item">
-<a class="gallery__link" href="${img.original}">
-  <img class="gallery__image"
-    src="${img.preview}" data-source="${img.original}"
-    alt="${img.description}"/>
-</a>
-</li>`;
-  return (collection += img);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var ulRef = document.querySelector(".gallery"); //const itemRef = document.querySelector(".gallery__item");
+
+var lightboxRef = document.querySelector(".lightbox");
+var lightboxOverlayRef = document.querySelector(".lightbox__overlay");
+var lightboxImageRef = document.querySelector(".lightbox__image"); //const modalContentRef = document.querySelector(".lightbox__content");
+
+var closeModalBtn = document.querySelector('button[data-action="close-lightbox"]');
+
+var madeGalleryImages = _galleryItems["default"].reduce(function (collection, img, i) {
+  img = "\n<li class=\"gallery__item\">\n<a class=\"gallery__link\" href=\"".concat(img.original, "\">\n  <img class=\"gallery__image\"\n    src=\"").concat(img.preview, "\" data-source=\"").concat(img.original, "\"\n    alt=\"").concat(img.description, "\"/>\n</a>\n</li>");
+  return collection += img;
 }, "");
 
 ulRef.insertAdjacentHTML("afterbegin", madeGalleryImages);
-
 ulRef.addEventListener("click", onGalleryClick);
 closeModalBtn.addEventListener("click", closeGalleryOnBtn);
 document.addEventListener("keydown", closeGalleryOnEsc);
-lightboxOverlayRef.addEventListener("click", closeGalleryOnLightbox);
-//document.addEventListener("keyup", scrollImagesInModal);
+lightboxOverlayRef.addEventListener("click", closeGalleryOnLightbox); //document.addEventListener("keyup", scrollImagesInModal);
 
 function onGalleryClick(event) {
   event.preventDefault();
   if (event.target === event.currentTarget) return;
   lightboxRef.classList.add("is-open");
-
   lightboxImageRef.src = event.target.dataset.source;
   lightboxImageRef.alt = event.target.alt;
 }
+
 function closeGalleryOnEsc(event) {
   if (event.code === "Escape") {
     lightboxRef.classList.remove("is-open");
@@ -55,9 +48,7 @@ function closeGalleryOnLightbox(event) {
   if (event.target !== event.currentTarget) return;
   lightboxRef.classList.remove("is-open");
   document.removeEventListener("click", closeGalleryOnLightbox);
-}
-
-//function scrollImagesInModal(event) {
+} //function scrollImagesInModal(event) {
 //  let index = event.target.firstElementChild.dataset.index;
 //  if (lightboxRef.className.includes(!"is-open")) return;
 //  if (event.keyCode === 37 && imagesCollection.length - 1) {
