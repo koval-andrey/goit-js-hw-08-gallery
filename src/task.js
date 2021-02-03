@@ -7,7 +7,7 @@ const lightboxOverlayRef = document.querySelector(".lightbox__overlay");
 const lightboxImageRef = document.querySelector(".lightbox__image");
 //const modalContentRef = document.querySelector(".lightbox__content");
 const closeModalBtn = document.querySelector(
-  'button[data-action="close-lightbox"]'
+  'button[data-action="close-lightsome"]'
 );
 
 const madeGalleryImages = imagesCollection.reduce((collection, img, i) => {
@@ -16,8 +16,7 @@ const madeGalleryImages = imagesCollection.reduce((collection, img, i) => {
 <a class="gallery__link" href="${img.original}">
   <img class="gallery__image"
     src="${img.preview}" data-source="${img.original}"
-    alt="${img.description}"
-    data-index="${[i]}"/>
+    alt="${img.description}"/>
 </a>
 </li>`;
   return (collection += img);
