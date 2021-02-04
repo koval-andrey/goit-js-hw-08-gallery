@@ -32,7 +32,7 @@ function onGalleryClick(event) {
 }
 
 function closeGalleryOnEsc(event) {
-  if (event.code === "Escape") {
+  if (event.code === "Escape" && lightboxRef.classList.contains("is-open")) {
     lightboxRef.classList.remove("is-open");
     document.removeEventListener("click", closeGalleryOnEsc);
   }

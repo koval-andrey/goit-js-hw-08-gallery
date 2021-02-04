@@ -39,7 +39,7 @@ function onGalleryClick(event) {
   lightboxImageRef.alt = event.target.alt;
 }
 function closeGalleryOnEsc(event) {
-  if (event.code === "Escape") {
+  if (event.code === "Escape" && lightboxRef.classList.contains("is-open")) {
     lightboxRef.classList.remove("is-open");
     document.removeEventListener("click", closeGalleryOnEsc);
   }
