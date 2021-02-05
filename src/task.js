@@ -41,7 +41,7 @@ function onGalleryClick(event) {
 function closeGalleryOnEsc(event) {
   if (event.code === "Escape") {
     lightboxRef.classList.remove("is-open");
-    document.removeEventListener("click", closeGalleryOnEsc);
+    document.removeEventListener("keydown", closeGalleryOnEsc);
   }
 }
 
