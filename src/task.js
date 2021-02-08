@@ -5,7 +5,7 @@ const ulRef = document.querySelector(".gallery");
 const lightboxRef = document.querySelector(".lightbox");
 const lightboxOverlayRef = document.querySelector(".lightbox__overlay");
 const lightboxImageRef = document.querySelector(".lightbox__image");
-//const modalContentRef = document.querySelector(".lightbox__content");
+//modalContentRef = document.querySelector(".lightbox__content");
 const closeModalBtn = document.querySelector(
   'button[data-action="close-lightbox"]'
 );
@@ -26,8 +26,8 @@ ulRef.insertAdjacentHTML("afterbegin", madeGalleryImages);
 
 ulRef.addEventListener("click", onGalleryClick);
 closeModalBtn.addEventListener("click", closeGalleryOnBtn);
-document.addEventListener("keydown", closeGalleryOnEsc);
 lightboxOverlayRef.addEventListener("click", closeGalleryOnLightbox);
+ulRef.addEventListener("keydown", closeGalleryOnEsc);
 //document.addEventListener("keyup", scrollImagesInModal);
 
 function onGalleryClick(event) {
@@ -41,7 +41,7 @@ function onGalleryClick(event) {
 function closeGalleryOnEsc(event) {
   if (event.code === "Escape") {
     lightboxRef.classList.remove("is-open");
-    document.removeEventListener("keydown", closeGalleryOnEsc);
+    lightboxOverlayRef.src = "";
   }
 }
 

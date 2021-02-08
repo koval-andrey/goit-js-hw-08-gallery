@@ -8,7 +8,7 @@ var ulRef = document.querySelector(".gallery"); //const itemRef = document.query
 
 var lightboxRef = document.querySelector(".lightbox");
 var lightboxOverlayRef = document.querySelector(".lightbox__overlay");
-var lightboxImageRef = document.querySelector(".lightbox__image"); //const modalContentRef = document.querySelector(".lightbox__content");
+var lightboxImageRef = document.querySelector(".lightbox__image"); //modalContentRef = document.querySelector(".lightbox__content");
 
 var closeModalBtn = document.querySelector('button[data-action="close-lightbox"]');
 
@@ -20,8 +20,8 @@ var madeGalleryImages = _galleryItems["default"].reduce(function (collection, im
 ulRef.insertAdjacentHTML("afterbegin", madeGalleryImages);
 ulRef.addEventListener("click", onGalleryClick);
 closeModalBtn.addEventListener("click", closeGalleryOnBtn);
-document.addEventListener("keydown", closeGalleryOnEsc);
-lightboxOverlayRef.addEventListener("click", closeGalleryOnLightbox); //document.addEventListener("keyup", scrollImagesInModal);
+lightboxOverlayRef.addEventListener("click", closeGalleryOnLightbox);
+ulRef.addEventListener("keydown", closeGalleryOnEsc); //document.addEventListener("keyup", scrollImagesInModal);
 
 function onGalleryClick(event) {
   event.preventDefault();
@@ -34,7 +34,7 @@ function onGalleryClick(event) {
 function closeGalleryOnEsc(event) {
   if (event.code === "Escape") {
     lightboxRef.classList.remove("is-open");
-    document.removeEventListener("click", closeGalleryOnEsc);
+    lightboxOverlayRef.src = "";
   }
 }
 
