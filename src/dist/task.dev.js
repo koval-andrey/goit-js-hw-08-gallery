@@ -21,7 +21,7 @@ ulRef.insertAdjacentHTML("afterbegin", madeGalleryImages);
 ulRef.addEventListener("click", onGalleryClick);
 closeModalBtn.addEventListener("click", closeGalleryOnBtn);
 lightboxOverlayRef.addEventListener("click", closeGalleryOnLightbox);
-ulRef.addEventListener("keydown", closeGalleryOnEsc); //document.addEventListener("keyup", scrollImagesInModal);
+document.addEventListener("keydown", closeGalleryOnEsc); //document.addEventListener("keyup", scrollImagesInModal);
 
 function onGalleryClick(event) {
   event.preventDefault();
@@ -32,7 +32,7 @@ function onGalleryClick(event) {
 }
 
 function closeGalleryOnEsc(event) {
-  if (event.code === "Escape") {
+  if (event.code === "Escape" && lightboxRef.className.includes("is-open")) {
     lightboxRef.classList.remove("is-open");
     lightboxOverlayRef.src = "";
   }
