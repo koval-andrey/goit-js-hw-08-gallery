@@ -32,22 +32,26 @@ function onGalleryClick(event) {
 }
 
 function closeGalleryOnEsc(event) {
-  if (event.code === "Escape" && lightboxRef.className.includes("is-open")) {
-    lightboxRef.classList.remove("is-open");
-    lightboxOverlayRef.src = "";
+  if (lightboxRef.className.includes("is-open") && event.code === "Escape") {
+    onCloseModal();
   }
 }
 
 function closeGalleryOnBtn(event) {
   if (event.target !== closeModalBtn) return;
   lightboxRef.classList.remove("is-open");
-  document.removeEventListener("click", closeGalleryOnBtn);
+  window.removeEventListener("click", closeGalleryOnBtn);
 }
 
 function closeGalleryOnLightbox(event) {
   if (event.target !== event.currentTarget) return;
   lightboxRef.classList.remove("is-open");
   document.removeEventListener("click", closeGalleryOnLightbox);
+}
+
+function onCloseModal() {
+  window.removeEventListener("keydown", closeGalleryOnEsc);
+  lightboxRef.classList.remove("is-open");
 } //function scrollImagesInModal(event) {
 //  let index = event.target.firstElementChild.dataset.index;
 //  if (lightboxRef.className.includes(!"is-open")) return;
