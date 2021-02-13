@@ -27,7 +27,7 @@ ulRef.insertAdjacentHTML("afterbegin", madeGalleryImages);
 ulRef.addEventListener("click", onGalleryClick);
 closeModalBtn.addEventListener("click", closeGalleryOnBtn);
 lightboxOverlayRef.addEventListener("click", closeGalleryOnLightbox);
-document.addEventListener("keydown", closeGalleryOnEsc);
+//document.addEventListener("keydown", closeGalleryOnEsc);
 //document.addEventListener("keyup", scrollImagesInModal);
 
 function onGalleryClick(event) {
@@ -37,6 +37,7 @@ function onGalleryClick(event) {
 
   lightboxImageRef.src = event.target.dataset.source;
   lightboxImageRef.alt = event.target.alt;
+  document.addEventListener("keydown", closeGalleryOnEsc);
 }
 function closeGalleryOnEsc(event) {
   if (lightboxRef.className.includes("is-open") && event.code === "Escape") {
@@ -46,19 +47,23 @@ function closeGalleryOnEsc(event) {
 
 function closeGalleryOnBtn(event) {
   if (event.target !== closeModalBtn) return;
-  lightboxRef.classList.remove("is-open");
-  window.removeEventListener("click", closeGalleryOnBtn);
+  onCloseModal()
+  //lightboxRef.classList.remove("is-open");
+  //window.removeEventListener("click", closeGalleryOnBtn);
 }
 
 function closeGalleryOnLightbox(event) {
   if (event.target !== event.currentTarget) return;
-  lightboxRef.classList.remove("is-open");
-  document.removeEventListener("click", closeGalleryOnLightbox);
+  onCloseModal()
+  //lightboxRef.classList.remove("is-open");
+  //document.removeEventListener("click", closeGalleryOnLightbox);
 }
 
 function onCloseModal() {
   window.removeEventListener("keydown", closeGalleryOnEsc);
+  document.removeEventListener("click", closeGalleryOnLightbox);
   lightboxRef.classList.remove("is-open");
+  window.removeEventListener("click", closeGalleryOnBtn);
 }
 
 //function scrollImagesInModal(event) {
